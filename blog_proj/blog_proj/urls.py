@@ -16,8 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 # from blog import urls
+from django.contrib.auth import views as auth_views
+# from rest_framework import routers
+
+# router = routers.DefaultRouter()
+# router.register(r'tasks', views.TodoView)
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('blog.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+
+    path('api-auth/', include('rest_framework.urls')),
+    # path('accounts/login/',views.login,name='login'),
+    # path('accounts/logout/',views.logout,name='logout', kwargs={'next_page':'/'}),
+
+
+    # path('accounts/login/',auth_views.LoginView.as_view(template_name="registration/login.html")),
+    # path('change-password/',auth_views.PasswordChangeView.as_view(template_name='registration/change-password.html'),name='password_reset'),
+    
+    # path('accounts/logout/',views.logout,name='logout', kwargs={'next_page':'/'}),
 ]

@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+
+
+{% block content %}
+<div class="centerstage mt-5">
+    {% for post in post_list %}
+    <div class="card mb-3 bg-light">
+        <div class="card-body">
+        <h1>
+            <a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a>
+        </h1>
+        <!-- <p class="postcontent">{{ post.text|safe|linebreaksbr }}</p> -->
+
+
+        {{ post.text|safe|truncatewords:"50"|linebreaks }}
+        <div class="text-right">
+            <a class="btn btn-primary" href="{% url 'blog:post_detail' pk=post.pk %}">read more</a>
+        </div>
+        
+        
+        
+       
+        </div>
+
+        <div class="card-footer bg-success clearfix">
+            <div>
+                <a class="d-inline-block float-left text-warning" href="{% url 'blog:post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+                <span class="d-inline-block float-right">Published on:{{ post.published_date }}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+{#  <p>Published on:{{ post.published|"D M Y" }}</p> #}
